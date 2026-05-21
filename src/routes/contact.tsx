@@ -175,13 +175,22 @@ function Contact() {
               </div>
             </div>
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-secondary px-7 py-3 text-sm font-semibold text-secondary-foreground shadow-md transition hover:bg-secondary/90 disabled:opacity-60"
-            >
-              {submitting ? "Sending…" : (<>Send Message <Send className="h-4 w-4" /></>)}
-            </button>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="inline-flex items-center gap-2 rounded-full bg-secondary px-7 py-3 text-sm font-semibold text-secondary-foreground shadow-md transition hover:bg-secondary/90 disabled:opacity-60"
+              >
+                {submitting ? "Sending…" : (<>Send via Email <Send className="h-4 w-4" /></>)}
+              </button>
+              <button
+                type="button"
+                onClick={sendOnWhatsApp}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-7 py-3 text-sm font-semibold text-foreground transition hover:border-secondary hover:text-secondary"
+              >
+                Send on WhatsApp
+              </button>
+            </div>
           </form>
 
           {/* Contact Card */}
