@@ -2,6 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Wheat, Factory, ShieldCheck, Truck, Sparkles } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { SectionHeading } from "@/components/SectionHeading";
+import {
+  glostaPohaLifestyle,
+  coloredPastaBulk,
+  fusilli,
+  macaroniElbow,
+  glostaPohaForest,
+  penne,
+  flowerPasta,
+} from "@/assets/products";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -96,10 +105,10 @@ function Home() {
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-secondary/30 to-primary/20 blur-2xl" />
             <div className="grid grid-cols-2 gap-4">
-              <ImagePlaceholder label="Hero Poha" ratio="portrait" />
-              <ImagePlaceholder label="Hero Pasta" ratio="square" className="mt-8" />
-              <ImagePlaceholder label="Hero Vermicelli" ratio="square" />
-              <ImagePlaceholder label="Hero Factory" ratio="portrait" className="-mt-4" />
+              <ImagePlaceholder label="Glosta Poha" src={glostaPohaLifestyle} ratio="portrait" />
+              <ImagePlaceholder label="Penne Pasta" src={penne} ratio="square" className="mt-8" />
+              <ImagePlaceholder label="Elbow Macaroni" src={macaroniElbow} ratio="square" />
+              <ImagePlaceholder label="Flower Pasta" src={flowerPasta} ratio="portrait" className="-mt-4" />
             </div>
           </div>
         </div>
@@ -139,13 +148,17 @@ function Home() {
             description="From traditional breakfast staples to modern pasta — we make food families love."
           />
           <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {products.map((p, i) => (
+            {[
+              { ...products[0], img: glostaPohaForest },
+              { ...products[1], img: coloredPastaBulk },
+              { ...products[2], img: fusilli },
+            ].map((p, i) => (
               <Link
                 key={p.title}
                 to="/products"
                 className="group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-xl"
               >
-                <ImagePlaceholder label={p.title} ratio="landscape" className="rounded-none border-0" />
+                <ImagePlaceholder label={p.title} src={p.img} ratio="landscape" className="rounded-none border-0" />
                 <div className="p-6">
                   <div className="text-xs font-semibold uppercase tracking-wider text-secondary">
                     0{i + 1} — Category
