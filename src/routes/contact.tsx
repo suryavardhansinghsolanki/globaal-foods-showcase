@@ -38,6 +38,10 @@ function Contact() {
   const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  function buildBody(d: z.infer<typeof schema>) {
+    return `Name: ${d.name}\nEmail: ${d.email}\nPhone: ${d.phone}\nInquiry: ${d.inquiry}\n\nMessage:\n${d.message}`;
+  }
+
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setErrors({});
@@ -57,12 +61,39 @@ function Contact() {
       return;
     }
     setSubmitting(true);
+    const subject = encodeURIComponent(`[${parsed.data.inquiry}] Enquiry from ${parsed.data.name}`);
+    const body = encodeURIComponent(buildBody(parsed.data));
+    const form = e.currentTarget;
     setTimeout(() => {
+      window.location.href = `mailto:abhikagarwal@gmail.com?subject=${subject}&body=${body}`;
       setSubmitting(false);
-      (e.target as HTMLFormElement).reset();
-      toast.success("Message sent! We'll get back within 24 hours.");
-    }, 700);
+      form.reset();
+      toast.success("Opening your email app to send the message…");
+    }, 350);
   }
+
+  function sendOnWhatsApp(e: React.MouseEvent<HTMLButtonElement>) {
+    const form = (e.currentTarget.closest("form") as HTMLFormElement) ?? null;
+    if (!form) return;
+    const fd = new FormData(form);
+    const parsed = schema.safeParse({
+      name: fd.get("name"),
+      email: fd.get("email"),
+      phone: fd.get("phone"),
+      inquiry: fd.get("inquiry"),
+      message: fd.get("message"),
+    });
+    if (!parsed.success) {
+      const flat: Record<string, string> = {};
+      for (const issue of parsed.error.issues) flat[issue.path[0] as string] = issue.message;
+      setErrors(flat);
+      toast.error("Please complete the form first.");
+      return;
+    }
+    const text = encodeURIComponent(buildBody(parsed.data));
+    window.open(`https://wa.me/919116945577?text=${text}`, "_blank", "noopener,noreferrer");
+  }
+
 
   const inputCls =
     "mt-1.5 block w-full rounded-lg border border-input bg-background px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-secondary focus:outline-none focus:ring-2 focus:ring-secondary/30";
