@@ -96,7 +96,7 @@ function Products() {
             >
               <div className="relative">
                 <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-secondary/20 to-primary/10 blur-2xl" />
-                <ImagePlaceholder label={c.title} ratio="landscape" />
+                <ImagePlaceholder label={c.title} src={c.img} ratio="landscape" />
               </div>
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -130,7 +130,7 @@ function Products() {
           <SectionHeading
             eyebrow="Gallery"
             title="A look inside our product range"
-            description="Hover any image for a closer look. Real product photos will be swapped in here."
+            description="Click any photo to view it full-size. Filter by category above the grid."
           />
           <div className="mt-14">
             <ProductGallery />

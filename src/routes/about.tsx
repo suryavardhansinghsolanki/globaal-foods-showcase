@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Target, Eye, ArrowRight, User } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { SectionHeading } from "@/components/SectionHeading";
+import { coloredPastaBulk, glostaPohaForest } from "@/assets/products";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -48,7 +49,7 @@ function About() {
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
           <div className="relative">
             <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-secondary/20 to-primary/10 blur-2xl" />
-            <ImagePlaceholder label="Our Facility" ratio="landscape" />
+            <ImagePlaceholder label="Our Facility" src={coloredPastaBulk} ratio="landscape" />
           </div>
           <div>
             <span className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -108,7 +109,7 @@ function About() {
       <section className="py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm md:grid md:grid-cols-[1fr_2fr]">
-            <ImagePlaceholder label="Abhishek Agarwal" ratio="square" className="rounded-none border-0" />
+            <ImagePlaceholder label="Abhishek Agarwal" src={glostaPohaForest} ratio="square" className="rounded-none border-0" />
             <div className="p-8 md:p-12">
               <div className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
                 <User className="h-3.5 w-3.5" /> Leadership
