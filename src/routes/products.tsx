@@ -3,6 +3,14 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ImagePlaceholder";
 import { SectionHeading } from "@/components/SectionHeading";
 import { ProductGallery } from "@/components/ProductGallery";
+import {
+  glostaPohaLifestyle,
+  coloredPastaBulk,
+  fusilli,
+  makhana,
+} from "@/assets/products";
+
+
 
 export const Route = createFileRoute("/products")({
   head: () => ({
@@ -30,20 +38,30 @@ const categories = [
   {
     title: "Premium Poha",
     tag: "Breakfast Staple",
-    desc: "Made from the finest paddy, our Poha is perfectly flattened, hygienic, and packed with nutrients. Ideal for a healthy, traditional Indian breakfast.",
+    desc: "Made from the finest paddy, our Poha — branded as Glosta — is perfectly flattened, hygienic, and packed with nutrients. Ideal for a healthy, traditional Indian breakfast.",
     points: ["Selected fine paddy", "Uniform thickness", "Cooks in minutes"],
+    img: glostaPohaLifestyle,
   },
   {
     title: "Pasta & Macaroni",
     tag: "Wheat Goodness",
-    desc: "Crafted from high-grade wheat, our Pasta and Macaroni offer the perfect 'al dente' bite. Available in bulk packaging for distributors and restaurants.",
-    points: ["High-grade durum-style wheat", "Consistent shape & cook", "Bulk packaging ready"],
+    desc: "Crafted from high-grade wheat in penne, fusilli, elbow, ribbon and tri-colour variants. Perfect 'al dente' bite, available in bulk for distributors and restaurants.",
+    points: ["High-grade durum-style wheat", "Multiple shapes & colours", "Bulk packaging ready"],
+    img: coloredPastaBulk,
   },
   {
-    title: "Vermicelli",
+    title: "Vermicelli & Specialty",
     tag: "Sweet & Savory",
-    desc: "Roasted and non-roasted vermicelli perfect for sweet kheer or savory upma. Manufactured untouched by hand to guarantee absolute purity.",
+    desc: "Roasted and plain vermicelli for kheer or upma, plus specialty fusilli spirals — manufactured untouched by hand to guarantee absolute purity.",
     points: ["Roasted & plain variants", "Hand-free production", "Long shelf life"],
+    img: fusilli,
+  },
+  {
+    title: "Premium Makhana",
+    tag: "Super Food",
+    desc: "Hand-picked, big-size fox nuts under our Le Agro × Glosta line. A roast-ready superfood — light, crunchy, and naturally nutritious.",
+    points: ["Hand-picked, big size", "High protein, low fat", "Retail-ready packaging"],
+    img: makhana,
   },
 ];
 
@@ -78,7 +96,7 @@ function Products() {
             >
               <div className="relative">
                 <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-br from-secondary/20 to-primary/10 blur-2xl" />
-                <ImagePlaceholder label={c.title} ratio="landscape" />
+                <ImagePlaceholder label={c.title} src={c.img} ratio="landscape" />
               </div>
               <div>
                 <span className="inline-flex items-center gap-2 rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
@@ -112,7 +130,7 @@ function Products() {
           <SectionHeading
             eyebrow="Gallery"
             title="A look inside our product range"
-            description="Hover any image for a closer look. Real product photos will be swapped in here."
+            description="Click any photo to view it full-size. Filter by category above the grid."
           />
           <div className="mt-14">
             <ProductGallery />
